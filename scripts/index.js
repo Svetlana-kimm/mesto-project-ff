@@ -10,33 +10,20 @@
 
 const container = document.querySelector('.content');
 const cardContainer = container.querySelector('.places__list');
+const cardTemplate = document.querySelector('#card-template').content.querySelector(".places__item");
 
-initialCards.forEach(addCard);
+initialCards.forEach(element => { const cardElement = createCard(element); console.log(cardContainer.append(cardElement)); });
 
-function addCard (element) {
-    const cardTemplate = document.querySelector('#card-template').content;
-    const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+function createCard (element) {
+    const cardElement = cardTemplate.cloneNode(true);
     const deleteButton = cardElement.querySelector('.card__delete-button');
-
-    cardElement.querySelector('.card__image').src = element.link;
-    cardElement.querySelector('.card__description').textContent = element.name;
-
-    deleteButton.addEventListener('click', cardsDelete);
-
-    cardContainer.append(cardElement);  
+    const link = cardElement.querySelector('.card__image').src = element.link;
+    const altname = cardElement.querySelector('.card__image').alt = 'Изображение места: ${name}';
+    const name = cardElement.querySelector('.card__title').textContent = element.name;
+    deleteButton.addEventListener('click', () => deleteCard(cardElement));
+    return cardElement;
 };
 
-function cardsDelete (e){
-    let cardItem = container.querySelector('.card__delete-button').closest(".card");
-    cardItem.remove();
-};
-
-    
- 
-   
-  
-
- 
-  
-
-
+function deleteCard(cardElement) {
+    cardElement.remove();
+  };
