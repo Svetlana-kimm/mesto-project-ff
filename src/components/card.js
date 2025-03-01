@@ -1,4 +1,5 @@
 export { createCard, deleteCard, likeCard };
+const baseUrl = "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/";
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -10,7 +11,7 @@ function createCard(element, openImagePopup, deleteCard, likeCard) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const cardImage = cardElement.querySelector(".card__image");
 
-  cardImage.src = element.link;
+  cardImage.src = baseUrl + element.img;
   cardImage.alt = element.name;
   const nameElement = cardElement.querySelector(".card__title");
   nameElement.textContent = element.name;
