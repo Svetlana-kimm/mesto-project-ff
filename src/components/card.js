@@ -1,6 +1,3 @@
-export { createCard, deleteCard, likeCard };
-const baseUrl = "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/";
-
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".places__item");
@@ -11,7 +8,7 @@ function createCard(element, openImagePopup, deleteCard, likeCard) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const cardImage = cardElement.querySelector(".card__image");
 
-  cardImage.src = baseUrl + element.img;
+  cardImage.src = element.link;
   cardImage.alt = element.name;
   const nameElement = cardElement.querySelector(".card__title");
   nameElement.textContent = element.name;
@@ -36,3 +33,5 @@ function deleteCard(cardElement) {
 function likeCard(button) {
   button.classList.toggle("card__like-button_is-active");
 }
+
+export { createCard, deleteCard, likeCard };
