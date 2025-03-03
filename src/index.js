@@ -41,9 +41,9 @@ const cardImageLink = addCardForm.querySelector(".popup__input_type_url");
 const imagePopup = document.querySelector(".popup_type_image");
 const imageContentPopup = imagePopup.querySelector(".popup__image");
 const imageCaptionPopup = imagePopup.querySelector(".popup__caption");
-const profileCloseButton = document.querySelectorAll(".popup__close");
+const profileCloseButtons = document.querySelectorAll(".popup__close");
 
-profileCloseButton.forEach((button) => {
+profileCloseButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const popup = button.closest(".popup");
     if (popup) {
@@ -52,9 +52,8 @@ profileCloseButton.forEach((button) => {
   });
 });
 
-document.querySelectorAll(".popup").forEach((popup) => {
-  popup.classList.add("popup_is-animated");
-  popup.addEventListener("mousedown", closeByOverlayClick);
+document.querySelectorAll(".popup").forEach((popups) => {
+  popups.classList.add("popup_is-animated");
 });
 
 function openImagePopup(element) {
