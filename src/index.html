@@ -39,36 +39,50 @@
       <footer class="footer page__section">
         <p class="footer__copyright">© 2021 Mesto Russia</p>
       </footer>
+
       <div class="popup popup_type_edit">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Редактировать профиль</h3>
-          <form class="popup__form" name="edit-profile">
+          <form class="popup__form" name="edit-profile" novalidate>
             <input
               type="text"
               name="name"
               class="popup__input popup__input_type_name"
               placeholder="Имя"
+              id = "name-input"
+              minlength = "2" 
+              maxlength = "40"
+              pattern = "^[a-zA-Zа-яА-ЯёЁ\-\s]+$" 
+              data-error = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="description-input-error popup__error_visible">Вы пропустили это поле.</span>
             <input
               type="text"
-              name="description"
+              name="description-input"
               class="popup__input popup__input_type_description"
               placeholder="Занятие"
+              id = "description-input"
+              minlength = "2" 
+              maxlength = "200"
+              pattern = "^[a-zA-Zа-яА-ЯёЁ\-\s]+$" 
+              data-error = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
+            <span class="description-input-error popup__error_visible">Вы пропустили это поле.</span>
             <button type="submit" class="button popup__button">
               Сохранить
             </button>
           </form>
         </div>
       </div>
+
       <div class="popup popup_type_new-card">
         <div class="popup__content">
           <button type="button" class="popup__close"></button>
           <h3 class="popup__title">Новое место</h3>
-          <form class="popup__form" name="new-place">
+          <form class="popup__form" name="new-place" novalidate>
             <input
               type="text"
               name="place-name"

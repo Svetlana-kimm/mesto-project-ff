@@ -1,13 +1,3 @@
-// @todo: Темплейт карточки
-
-// @todo: DOM узлы
-
-// @todo: Функция создания карточки
-
-// @todo: Функция удаления карточки
-
-// @todo: Вывести карточки на страницу
-
 import "./pages/index.css";
 import { initialCards } from "./cards.js";
 import { createCard, deleteCard, likeCard } from "./components/card.js";
@@ -16,22 +6,33 @@ import {
   closeModal,
   closeByOverlayClick,
 } from "./components/modal.js";
+import { enableValidation, clearValidation } from "./components/validation.js";
+
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
+// Включение валидации
+enableValidation(validationConfig);
+
+
 
 const container = document.querySelector(".content");
 const cardContainer = container.querySelector(".places__list");
-
 const editProfileButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
-
 const editProfilePopup = document.querySelector(".popup_type_edit");
 const addCardPopup = document.querySelector(".popup_type_new-card");
-
 const editProfilePopupForm = editProfilePopup.querySelector(".popup__form");
 const inputName = editProfilePopupForm.querySelector(".popup__input_type_name");
 const inputDescription = editProfilePopupForm.querySelector(
   ".popup__input_type_description"
 );
-
 const profileName = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const addCardForm = addCardPopup.querySelector(".popup__form");
@@ -42,6 +43,32 @@ const imagePopup = document.querySelector(".popup_type_image");
 const imageContentPopup = imagePopup.querySelector(".popup__image");
 const imageCaptionPopup = imagePopup.querySelector(".popup__caption");
 const profileCloseButtons = document.querySelectorAll(".popup__close");
+const formEditProfile = document.querySelectorAll( "edit-profile");
+
+// Очистка ошибок при открытии формы редактирования профиля
+
+editProfileButton.addEventListener('click', () => {
+    const profileForm = document.querySelector('.popup_type_edit .popup__form');
+    if (profileForm) { // Проверьте, правильно ли найден элемент формы
+        clearValidation(profileForm, validationConfig); // Очищаем ошибки при открытии формы
+    } else {
+        console.error("Не удалось найти форму редактирования профиля");
+    }
+});
+
+
+if (editProfileButton) {
+  editProfileButton.addEventListener("click", () => {
+    inputName.value = document.querySelector(".profile__title").textContent;
+    inputDescription.value = document.querySelector(
+     ".profile__description"
+    ).textContent;
+    clearValidation(formEditProfile, validationConfig);
+    openPopup(editProfilePopup);
+  });
+} else {
+  console.error("Кнопка редактирования профиля не найдена");
+}
 
 profileCloseButtons.forEach((button) => {
   button.addEventListener("click", () => {
