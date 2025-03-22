@@ -43,17 +43,15 @@ const imagePopup = document.querySelector(".popup_type_image");
 const imageContentPopup = imagePopup.querySelector(".popup__image");
 const imageCaptionPopup = imagePopup.querySelector(".popup__caption");
 const profileCloseButtons = document.querySelectorAll(".popup__close");
-const formEditProfile = document.querySelectorAll( "edit-profile");
+const formEditProfile = document.querySelectorAll( ".edit-profile");
 
 // Очистка ошибок при открытии формы редактирования профиля
 
 editProfileButton.addEventListener('click', () => {
-    const profileForm = document.querySelector('.popup_type_edit .popup__form');
-    if (profileForm) { // Проверьте, правильно ли найден элемент формы
-        clearValidation(profileForm, validationConfig); // Очищаем ошибки при открытии формы
-    } else {
-        console.error("Не удалось найти форму редактирования профиля");
-    }
+  clearValidation(editProfilePopupForm, validationConfig);
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileDescription.textContent;
+  openModal(editProfilePopup); // Это должно быть здесь
 });
 
 
@@ -120,6 +118,7 @@ function submitProfileForm(evt) {
 
 editProfilePopupForm.addEventListener("submit", submitProfileForm);
 addCardButton.addEventListener("click", () => openModal(addCardPopup));
+
 function openEditProfileForm() {
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;

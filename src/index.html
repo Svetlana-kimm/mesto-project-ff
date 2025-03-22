@@ -54,10 +54,10 @@
               minlength = "2" 
               maxlength = "40"
               pattern = "^[a-zA-Zа-яА-ЯёЁ\-\s]+$" 
-              data-error = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
-            <span class="description-input-error popup__error_visible">Вы пропустили это поле.</span>
+            <span class="name-input-error popup__error"></span>
             <input
               type="text"
               name="description-input"
@@ -67,10 +67,11 @@
               minlength = "2" 
               maxlength = "200"
               pattern = "^[a-zA-Zа-яА-ЯёЁ\-\s]+$" 
-              data-error = "Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+              data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
               required
             />
-            <span class="description-input-error popup__error_visible">Вы пропустили это поле.</span>
+            <span class="description-input-error popup__error"></span>
+
             <button type="submit" class="button popup__button">
               Сохранить
             </button>
@@ -86,17 +87,26 @@
             <input
               type="text"
               name="place-name"
+              id = "place-name-input"
               class="popup__input popup__input_type_card-name"
               placeholder="Название"
+              minlength = "2" 
+              maxlength = "30"
+              pattern="^[a-zA-Zа-яА-Я\s\-]+$"
+              data-error-message="Разрешены только латинские и кириллические буквы, знаки дефиса и пробелы."
               required
             />
+            <span class="place-name-input-error popup__error"></span>
             <input
               type="url"
+              id = "link-input"
               name="link"
               class="popup__input popup__input_type_url"
               placeholder="Ссылка на картинку"
+              data-error-message="Введите адрес сайта." 
               required
             />
+            <span class="link-input-error popup__error"></span>
             <button type="submit" class="button popup__button">
               Сохранить
             </button>
