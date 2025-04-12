@@ -20,13 +20,3 @@
     line-height: 15px;
   }
 }
-
-.popup__input_type_error {
-  border: 2px solid red;
-  }
-  
-  .popup__error {
-  color: red;
-  font-size: 12px;
-  visibility: hidden;
-  }

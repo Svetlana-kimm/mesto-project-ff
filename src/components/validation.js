@@ -32,7 +32,7 @@ const checkInputValidity = (formElement, inputElement, validationConfig) => {
     const errorMessage = inputElement.validationMessage;
     showError(formElement, inputElement, errorMessage, validationConfig);
   } else {
-    hideError(formElement, inputElement, validationConfig); // Убираем ошибку
+    hideError(formElement, inputElement, validationConfig);
   }
 };
 
@@ -43,27 +43,26 @@ export const enableValidation = (validationConfig) => {
   );
 
   formList.forEach((formElement) => {
-    setEventListeners(formElement, validationConfig); // Устанавливаем слушатели для каждой формы
+    setEventListeners(formElement, validationConfig);
   });
 };
 
 // Устанавливает слушатели на полях ввода
 function setEventListeners(formElement, validationConfig) {
-    
   const inputList = Array.from(
     formElement.querySelectorAll(validationConfig.inputSelector)
-  ); // Получаем все поля ввода
+  );
 
   const buttonElement = formElement.querySelector(
     validationConfig.submitButtonSelector
-  ); // Получаем кнопку отправки
+  );
 
-  toggleButtonState(inputList, buttonElement, validationConfig); // Проверяем состояние кнопки
+  toggleButtonState(inputList, buttonElement, validationConfig);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
-      checkInputValidity (formElement, inputElement, validationConfig); // Проверка валидности каждого поля
-      toggleButtonState(inputList, buttonElement, validationConfig); // Обновление состояния кнопки
+      checkInputValidity(formElement, inputElement, validationConfig);
+      toggleButtonState(inputList, buttonElement, validationConfig);
     });
   });
 }
@@ -78,27 +77,26 @@ const hasInvalidInput = (inputList) => {
 // Переключение состояния кнопки
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validationConfig.inactiveButtonClass); // Делаем кнопку неактивной
+    buttonElement.classList.add(validationConfig.inactiveButtonClass);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove(validationConfig.inactiveButtonClass); // Активируем кнопку
+    buttonElement.classList.remove(validationConfig.inactiveButtonClass);
     buttonElement.disabled = false;
   }
 };
-
 
 // Очистка ошибок валидации
 export const clearValidation = (formElement, validationConfig) => {
   const inputList = Array.from(
     formElement.querySelectorAll(validationConfig.inputSelector)
-  ); // Получаем все поля ввода
+  );
   const buttonElement = formElement.querySelector(
     validationConfig.submitButtonSelector
-  ); // Получаем кнопку отправки
+  );
 
   // Проходим по всем инпутам и скрываем ошибки
   inputList.forEach((inputElement) => {
-    hideError(formElement, inputElement, validationConfig); // Убираем ошибку
+    hideError(formElement, inputElement, validationConfig);
   });
-  toggleButtonState(inputList, buttonElement, validationConfig); // Делаем кнопку неактивной
+  toggleButtonState(inputList, buttonElement, validationConfig);
 };
