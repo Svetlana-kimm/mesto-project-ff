@@ -6,7 +6,7 @@ const config = {
   },
 };
 
-function checkResponse(res) {
+export function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
@@ -14,7 +14,7 @@ function checkResponse(res) {
 }
 
 // 3) данные пользователя
-const fetchUserData = () => {
+export const fetchUserData = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: "GET",
     headers: config.headers,
@@ -22,7 +22,7 @@ const fetchUserData = () => {
 };
 
 // 4) карточки
-const fetchCards = () => {
+export const fetchCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     method: "GET",
     headers: config.headers,
@@ -30,7 +30,7 @@ const fetchCards = () => {
 };
 
 // 5) Обновление профиля
-const patchUserProfile = (name, about) => {
+export const patchUserProfile = (name, about) => {
   return fetch(`${config.baseUrl}/users/me`, {
     method: "PATCH",
     headers: config.headers,
@@ -39,7 +39,7 @@ const patchUserProfile = (name, about) => {
 };
 
 // 6) Добавление новой карточки
-const createNewCard = (name, link) => {
+export const createNewCard = (name, link) => {
   return fetch(`${config.baseUrl}/cards`, {
     method: "POST",
     headers: config.headers,
@@ -48,7 +48,7 @@ const createNewCard = (name, link) => {
 };
 
 // 7) Удаление карточки
-const deleteCardApi = (cardId) => {
+export const deleteCardApi = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
@@ -56,7 +56,7 @@ const deleteCardApi = (cardId) => {
 };
 
 // 9) Лайк карточки
-const likeCardApi = (cardId) => {
+export const likeCardApi = (cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "PUT",
     headers: config.headers,
@@ -64,7 +64,7 @@ const likeCardApi = (cardId) => {
 };
 
 // 9) Убрать лайк
-const unlikeCard = (cardId) => {
+export const unlikeCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
@@ -72,21 +72,10 @@ const unlikeCard = (cardId) => {
 };
 
 // 10) Обновление аватара пользователя
-const updateAvatar = (avatarUrl) => {
+export const updateAvatar = (avatar) => {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: "PATCH",
     headers: config.headers,
-    body: JSON.stringify({ avatar: avatarUrl }),
+    body: JSON.stringify({ avatar: avatar }),
   }).then(checkResponse);
-};
-
-export {
-  fetchUserData,
-  fetchCards,
-  patchUserProfile,
-  createNewCard,
-  deleteCardApi,
-  likeCardApi,
-  unlikeCard,
-  updateAvatar,
 };
