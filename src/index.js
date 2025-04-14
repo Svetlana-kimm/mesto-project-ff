@@ -24,7 +24,6 @@ const validationConfig = {
   errorClass: "popup__error_visible",
 };
 
-// Включение валидации
 enableValidation(validationConfig);
 let userId;
 
