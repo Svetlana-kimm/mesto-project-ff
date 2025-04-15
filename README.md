@@ -1,3 +1,4 @@
 # Проектная работа Mesto
 
-[Ссылка на сайт:](https://Svetlana-kimm.github.io/mesto-project-ff)
+
+[Ссылка на проект Mesto](https://Svetlana-kimm.github.io/mesto-project-ff/)
