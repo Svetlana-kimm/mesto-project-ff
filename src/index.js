@@ -174,6 +174,7 @@ document.querySelectorAll(".popup").forEach((evt) => {
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopup);
   addCardForm.reset();
+  clearValidation(addCardForm, validationConfig);
 });
 
 profileImage.addEventListener("click", () => {
@@ -191,7 +192,7 @@ formEditAvatar.addEventListener("submit", (evt) => {
     .then((element) => {
       profileImage.style.backgroundImage = `url(${element.avatar})`;
       formEditAvatar.reset();
-      closeModal(formEditAvatar);
+      closeModal(avatarPopup);
     })
     .catch((error) => {
       console.log(`Ошибка загрузка изображения: ${error}`);
